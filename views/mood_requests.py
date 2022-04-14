@@ -26,3 +26,7 @@ def get_all_moods():
             moods.append(mood.__dict__)
 
     return json.dumps(moods)
+
+def get_single_mood(id):
+    """This function will return the row with specified id
+    """
