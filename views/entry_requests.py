@@ -83,6 +83,8 @@ def search_entry(search_term):
     """This function will return rows with matching values of the inputed search term
     """
     with sqlite3.connect('./journal.sqlite3') as conn:
+        # turn our tuples into python dictionaries
+        conn.row_factory = sqlite3.Row
         db_cursor = conn.cursor()
         db_cursor.execute("""
         SELECT

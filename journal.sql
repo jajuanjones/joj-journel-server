@@ -23,3 +23,4 @@ INSERT INTO `Moods` VALUES (null, "sad");
 INSERT INTO Entries VALUES (null, "Conversation", "Hi", "4/13/22", 2);
 INSERT INTO Entries VALUES (null, "Conversation", "How are you?", "4/13/22", 2);
 INSERT INTO Entries VALUES (null, "Conversation", "I'm well", "4/13/22", 2);
+INSERT INTO Entries VALUES (null, "Programming", "What's the difference between http and https", "4/13/22", 2);
