@@ -4,6 +4,7 @@ from views import get_all_entries
 from views import get_single_entry
 from views import delete_entry
 from views import search_entry
+from views import create_entry
 from views import get_all_moods
 
 # Here's a class. It inherits from another class.
@@ -142,14 +143,14 @@ class HandleRequests(BaseHTTPRequestHandler):
         # Parse the URL
         (resource, id) = self.parse_url(self.path)
 
-        # Initialize new animal
+        # Initialize new entry
         new_entry = None
 
-        # Add a new animal to the list. Don't worry about
-        # the orange squiggle, you'll define the create_animal
+        # Add a new entry to the list. Don't worry about
+        # the orange squiggle, you'll define the create_entry
         # function next.
         if resource == "entries":
-        # Encode the new animal and send in response
+        # Encode the new entry and send in response
             new_entry = create_entry(post_body)
             self.wfile.write(f"{new_entry}".encode())
 
@@ -169,15 +170,8 @@ class HandleRequests(BaseHTTPRequestHandler):
         success = False
 
         if resource == "animals":
-            success = update_animal(id, post_body)
-        # rest of the elif's
-        elif resource == "customers":
-            success = update_customer(id, post_body)
-        elif resource == "employees":
-            success = update_employee(id, post_body)
-        elif resource == "locations":
-            success = update_location(id, post_body)
-
+            success = update_entry(id, post_body)
+        # success has a value or not?
         if success:
             self._set_headers(204)
         else:
