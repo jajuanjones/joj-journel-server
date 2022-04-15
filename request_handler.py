@@ -5,7 +5,9 @@ from views import get_single_entry
 from views import delete_entry
 from views import search_entry
 from views import create_entry
+from views import update_entry
 from views import get_all_moods
+from views import get_single_mood
 
 # Here's a class. It inherits from another class.
 # For now, think of a class as a container for functions that
@@ -169,7 +171,7 @@ class HandleRequests(BaseHTTPRequestHandler):
 
         success = False
 
-        if resource == "animals":
+        if resource == "entries":
             success = update_entry(id, post_body)
         # success has a value or not?
         if success:

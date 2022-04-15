@@ -30,3 +30,17 @@ def get_all_moods():
 def get_single_mood(id):
     """This function will return the row with specified id
     """
+    with sqlite3.connect('./journal.sqlite3') as conn:
+        conn.row_factory = sqlite3.Row
+        db_cursor = conn.cursor()
+        db_cursor.execute("""
+        SELECT
+            m.id,
+            m.label
+        FROM moods m
+        WHERE m.id = ?
+        """, ( id,))
+
+        data = db_cursor.fetchone()
+        mood = Mood(data['id'], data['label'])
+        return json.dumps(mood.__dict__)
