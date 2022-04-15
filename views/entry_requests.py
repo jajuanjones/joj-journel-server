@@ -130,3 +130,25 @@ def create_entry(new_entry):
         new_entry['id'] = id
 
     return json.dumps(new_entry)
+
+def update_entry(id, new_entry):
+    """This function will update the column data of a row
+    """
+    with sqlite3.connect('./journal.sqlite3') as conn:
+        db_cursor = conn.cursor()
+        db_cursor.execute("""
+        UPDATE entries
+            SET
+               concept = ?,
+               entry = ?,
+               date = ?,
+               mood_id = ? 
+        WHERE id = ?
+        """, ( new_entry['concept'], new_entry['entry'],
+              new_entry['date'], new_entry['moodId'], id, ))
+
+        rows_affected = db_cursor.rowcount
+
+    if rows_affected == 0:
+        return False
+    return True
